@@ -13,7 +13,7 @@ Install the MIDI dependency:
 python3 -m pip install mido
 
 Generate the MIDI example header:
-python3 src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/midi/song.h
+python3 src/chiptune_converter.py music/Virtual_Insanity.mid -o src/song.h
 
 The generated song.h is local build output and is intentionally not committed.
 
