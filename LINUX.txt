@@ -1,0 +1,16 @@
+8-bit Song Maker for Buzzer - Linux
+===================================
+
+Open a terminal in the project folder.
+
+Check Python:
+python3 --version
+
+Run:
+python3 song_maker.py
+
+Optional:
+chmod +x song_maker.py
+
+Then:
+./song_maker.py
