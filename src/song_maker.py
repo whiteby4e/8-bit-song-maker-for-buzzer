@@ -112,13 +112,15 @@ def main():
         print("Error: GPIO must be a number.")
         raise SystemExit(1)
 
+    if buzzer_pin < 0:
+        print("Error: GPIO must be 0 or greater.")
+        raise SystemExit(1)
+
     output_text = input("Output filename [generated_song.cpp]: ").strip()
     output_path = Path(output_text or "generated_song.cpp")
 
-    output_path.write_text(
-        generate_cpp(notes, buzzer_pin),
-        encoding="utf-8"
-    )
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(generate_cpp(notes, buzzer_pin), encoding="utf-8")
 
     print()
     print(f"Created: {output_path}")
