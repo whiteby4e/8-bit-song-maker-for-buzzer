@@ -13,5 +13,10 @@ If "python" is not recognized:
 py --version
 py src\song_maker.py
 
-MIDI converter:
-python src\chiptune_converter.py music\Virtual_Insanity.mid -o examples\virtual_insanity\song.h
+Install the MIDI dependency:
+python -m pip install mido
+
+Generate the MIDI example header:
+python src\chiptune_converter.py music\Virtual_Insanity.mid -o examples\midi\song.h
+
+The generated song.h is local build output and is intentionally not committed.
