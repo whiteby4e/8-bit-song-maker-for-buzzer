@@ -6,9 +6,12 @@ Open CMD in the project folder.
 Check Python:
 python --version
 
-Run:
-python song_maker.py
+Run the song maker:
+python src\song_maker.py
 
 If "python" is not recognized:
 py --version
-py song_maker.py
+py src\song_maker.py
+
+MIDI converter:
+python src\chiptune_converter.py music\Virtual_Insanity.mid -o examples\virtual_insanity\song.h
