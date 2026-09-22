@@ -105,8 +105,10 @@ python -m pip install mido
 Convert the included MIDI from the repository root:
 
 ```bash
-python src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/virtual_insanity/song.h
+python src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/midi/song.h
 ```
+
+The generated `song.h` is a build output, not source code, so it is intentionally **not stored in the repository**.
 
 The converter:
 
@@ -115,6 +117,35 @@ The converter:
 3. Keeps notes in chronological order.
 4. Handles overlapping notes by selecting one active note for each time segment.
 5. Writes Arduino-compatible `song.h` data.
+
+## MIDI Example
+
+The complete MIDI example is kept together under:
+
+```text
+examples/midi/
+└── code.ino
+```
+
+The source MIDI file is:
+
+```text
+music/Virtual_Insanity.mid
+```
+
+Generate the local header before opening the sketch in Arduino IDE:
+
+```bash
+python src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/midi/song.h
+```
+
+Then open:
+
+```text
+examples/midi/code.ino
+```
+
+The sketch includes the generated `song.h`.
 
 ## Example Hardware
 
@@ -136,21 +167,11 @@ Change the pin if your board uses another GPIO.
 
 Open `examples/basic/buzzer_player.cpp` and copy it into an Arduino sketch.
 
-### Virtual Insanity MIDI Example
+### MIDI
 
-The Arduino sketch is:
+Open `examples/midi/code.ino`.
 
-```text
-examples/virtual_insanity/code.ino
-```
-
-Its generated song data is:
-
-```text
-examples/virtual_insanity/song.h
-```
-
-If you change the MIDI file or converter settings, regenerate `song.h` with the command above.
+Generate `examples/midi/song.h` from the included MIDI first. The generated header is ignored by Git and does not need to be committed.
 
 ## Project Structure
 
@@ -165,9 +186,8 @@ If you change the MIDI file or converter settings, regenerate `song.h` with the 
 ├── examples/
 │   ├── basic/
 │   │   └── buzzer_player.cpp
-│   └── virtual_insanity/
-│       ├── code.ino
-│       └── song.h
+│   └── midi/
+│       └── code.ino
 ├── music/
 │   └── Virtual_Insanity.mid
 ├── docs/
