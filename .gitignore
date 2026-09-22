@@ -1,5 +1,5 @@
 # Generated MIDI example output
-examples/midi/song.h
+src/song.h
 
 # Python cache
 __pycache__/
