@@ -1,1 +1,1 @@
-python ../../src/chiptune_converter.py ../../music/Virtual_Insanity.mid
+python src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/virtual_insanity/song.h
