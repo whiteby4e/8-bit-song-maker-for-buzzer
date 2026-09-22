@@ -105,7 +105,7 @@ python -m pip install mido
 Convert the included MIDI from the repository root:
 
 ```bash
-python src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/midi/song.h
+python src/chiptune_converter.py music/Virtual_Insanity.mid -o src/song.h
 ```
 
 The generated `song.h` is a build output, not source code, so it is intentionally **not stored in the repository**.
@@ -120,10 +120,10 @@ The converter:
 
 ## MIDI Example
 
-The complete MIDI example is kept together under:
+The MIDI playback sketch is kept with the project source code:
 
 ```text
-examples/midi/
+src/
 └── code.ino
 ```
 
@@ -136,13 +136,13 @@ music/Virtual_Insanity.mid
 Generate the local header before opening the sketch in Arduino IDE:
 
 ```bash
-python src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/midi/song.h
+python src/chiptune_converter.py music/Virtual_Insanity.mid -o src/song.h
 ```
 
 Then open:
 
 ```text
-examples/midi/code.ino
+src/code.ino
 ```
 
 The sketch includes the generated `song.h`.
@@ -169,9 +169,9 @@ Open `examples/basic/buzzer_player.cpp` and copy it into an Arduino sketch.
 
 ### MIDI
 
-Open `examples/midi/code.ino`.
+Open `src/code.ino`.
 
-Generate `examples/midi/song.h` from the included MIDI first. The generated header is ignored by Git and does not need to be committed.
+Generate `src/song.h` from the included MIDI first. The generated header is ignored by Git and does not need to be committed.
 
 ## Project Structure
 
@@ -182,12 +182,11 @@ Generate `examples/midi/song.h` from the included MIDI first. The generated head
 ├── .gitignore
 ├── src/
 │   ├── song_maker.py
-│   └── chiptune_converter.py
+│   ├── chiptune_converter.py
+│   └── code.ino
 ├── examples/
-│   ├── basic/
-│   │   └── buzzer_player.cpp
-│   └── midi/
-│       └── code.ino
+│   └── basic/
+│       └── buzzer_player.cpp
 ├── music/
 │   └── Virtual_Insanity.mid
 ├── docs/
