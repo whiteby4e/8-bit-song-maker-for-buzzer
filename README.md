@@ -8,24 +8,24 @@ The goal is a deliberately crunchy, lo-fi 8-bit sound — like a tiny Game Boy-s
 
 - Create melodies from simple note-and-duration input.
 - Generate Arduino-compatible C++ code.
+- Convert MIDI files into buzzer-friendly note data.
 - Designed for passive buzzers.
 - Beginner-friendly for Arduino, ESP32, and Raspberry Pi Pico projects.
 - Windows CMD and Linux terminal instructions included.
-- No external Python packages required.
 
 ## Workflow
 
 ```text
-Python song maker
-       |
-       v
-Generated C++ melody
-       |
-       v
-Arduino / ESP32 / Pico
-       |
-       v
-Passive buzzer
+Python song maker / MIDI converter
+              |
+              v
+       Generated C++ data
+              |
+              v
+       Arduino / ESP32 / Pico
+              |
+              v
+         Passive buzzer
 ```
 
 ## Requirements
@@ -34,30 +34,36 @@ Passive buzzer
 - Arduino IDE or another compatible Arduino/C++ environment
 - A passive buzzer
 - An Arduino-compatible board, ESP32, or Raspberry Pi Pico
+- `mido` is required only for the MIDI converter:
+  `python -m pip install mido`
 
 ## Quick Start
 
 ### Windows CMD
 
+From the repository root:
+
 ```cmd
-python song_maker.py
+python src/song_maker.py
 ```
 
 If `python` is not recognized:
 
 ```cmd
-py song_maker.py
+py src/song_maker.py
 ```
 
-See [CMD.txt](CMD.txt).
+See [Windows CMD instructions](docs/CMD.txt).
 
 ### Linux
 
+From the repository root:
+
 ```bash
-python3 song_maker.py
+python3 src/song_maker.py
 ```
 
-See [LINUX.txt](LINUX.txt).
+See [Linux instructions](docs/LINUX.txt).
 
 ## Song Format
 
@@ -80,9 +86,28 @@ C4:180 D4:180 E4:180 G4:300 R:120 E4:180 C4:400
 
 The Python program asks for the buzzer GPIO and output filename, then creates a ready-to-edit C++ sketch.
 
+## MIDI Conversion
+
+The project also includes a MIDI-to-buzzer converter.
+
+Install the dependency:
+
+```bash
+python -m pip install mido
+```
+
+Then convert the included example:
+
+```bash
+cd examples/virtual_insanity
+python ../../src/chiptune_converter.py ../../music/Virtual_Insanity.mid
+```
+
+The converter generates `song.h` in the current directory.
+
 ## Example Hardware
 
-Connect a passive buzzer between the selected GPIO and GND. The example uses:
+Connect a passive buzzer between the selected GPIO and GND. The basic example uses:
 
 ```cpp
 const int BUZZER_PIN = 15;
@@ -95,19 +120,34 @@ Change this pin if your board uses another GPIO.
 ```text
 8-bit-song-maker-for-buzzer/
 ├── README.md
-├── song_maker.py
-├── buzzer_player.cpp
-├── CMD.txt
-└── LINUX.txt
+├── LICENSE
+├── .gitignore
+├── src/
+│   ├── song_maker.py
+│   └── chiptune_converter.py
+├── examples/
+│   ├── basic/
+│   │   └── buzzer_player.cpp
+│   └── virtual_insanity/
+│       ├── code.ino
+│       └── song.h
+├── music/
+│   └── Virtual_Insanity.mid
+├── docs/
+│   ├── CMD.txt
+│   └── LINUX.txt
+└── tools/
+    └── code.txt
 ```
 
-### Files
+### Directories
 
-- `song_maker.py` — interactive melody creator and C++ generator.
-- `buzzer_player.cpp` — standalone Arduino-style example.
-- `CMD.txt` — Windows CMD commands.
-- `LINUX.txt` — Linux terminal commands.
-- `README.md` — project documentation.
+- `src/` — Python tools.
+- `examples/basic/` — simple passive-buzzer example.
+- `examples/virtual_insanity/` — generated Arduino example for the included MIDI file.
+- `music/` — MIDI source files.
+- `docs/` — platform-specific instructions.
+- `tools/` — useful command snippets.
 
 ## Sound Style
 
