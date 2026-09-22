@@ -6,11 +6,14 @@ Open a terminal in the project folder.
 Check Python:
 python3 --version
 
-Run:
-python3 song_maker.py
+Run the song maker:
+python3 src/song_maker.py
 
-Optional:
-chmod +x song_maker.py
+MIDI converter:
+python3 src/chiptune_converter.py music/Virtual_Insanity.mid -o examples/virtual_insanity/song.h
+
+Optional executable mode:
+chmod +x src/song_maker.py src/chiptune_converter.py
 
 Then:
-./song_maker.py
+./src/song_maker.py
