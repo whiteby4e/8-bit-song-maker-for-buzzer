@@ -1,0 +1,14 @@
+8-bit Song Maker for Buzzer - Windows CMD
+==========================================
+
+Open CMD in the project folder.
+
+Check Python:
+python --version
+
+Run:
+python song_maker.py
+
+If "python" is not recognized:
+py --version
+py song_maker.py
