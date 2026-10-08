@@ -62,6 +62,13 @@ def read_midi_notes(path: Path) -> list[tuple[float, float, int, int]]:
                 (start, current_seconds, msg.note, velocity)
             )
 
+    # Some MIDI files omit the final note_off. Treat the end of the file
+    # as the note end instead of silently dropping those notes.
+    for (channel, note), starts in active.items():
+        for start, velocity in starts:
+            if current_seconds > start:
+                notes.append((start, current_seconds, note, velocity))
+
     return notes
 
 
