@@ -71,6 +71,32 @@ python3 src/song_maker.py
 
 See [Linux instructions](docs/LINUX.txt).
 
+## GUI mode (recommended)
+
+A graphical launcher is available for choosing a MIDI song, board, and buzzer pin without editing Python or C++ code.
+
+Install the MIDI dependency once:
+
+```bash
+python -m pip install mido
+```
+
+From the repository root, launch the app:
+
+**Windows CMD**
+```cmd
+python src\song_maker_gui.py
+```
+
+**Linux**
+```bash
+python3 src/song_maker_gui.py
+```
+
+The window lets you choose a MIDI file from the `music/` list or browse for another MIDI file, select a target board, select a suggested pin, and choose an output folder. It creates a folder containing the Arduino sketch (`.ino`) and its matching `song.h`. Open the generated `.ino` file in Arduino IDE, select the matching board/core there, compile, and upload.
+
+The initial board presets include Arduino Uno/Nano, Mega 2560, Leonardo/Micro, ESP32 DevKit, ESP8266 NodeMCU, Raspberry Pi Pico/RP2040, and Pico 2/RP2350. These presets are convenience defaults, not a guarantee that every third-party board core implements `tone()` identically. Confirm the selected board and pin against your exact board, and test at low volume first.
+
 ## Song Format
 
 Enter notes as:
