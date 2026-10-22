@@ -145,8 +145,8 @@ class SongMakerApp:
     def on_board_changed(self, _event=None) -> None:
         profile = BOARDS[self.board_var.get()]
         self.pin_box["values"] = profile["pins"]
-        if self.pin_var.get() not in profile["pins"]:
-            self.pin_var.set(profile["default"])
+        # Changing boards should select that board's recommended default pin.
+        self.pin_var.set(profile["default"])
 
     def generate(self) -> None:
         song_path = self.song_paths.get(self.song_var.get())
